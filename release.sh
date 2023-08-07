@@ -58,16 +58,9 @@ sed -i "s/\"version\": \"$current_version\"/\"version\": \"$new_version\"/" pack
 git add package.json
 git commit -m "Release version $new_version"
 
-# Create a release branch
-git checkout -b release-$new_version
-
 # Commit changes with the new version
 git add package.json
 git commit -m "Release version $new_version"
-
-# Merge into the dev branch
-git checkout dev
-git merge release-$new_version
 
 # Pull remote changes for main branch
 git checkout main
