@@ -89,4 +89,8 @@ git branch -d release-$new_version
 # Restore the stashed changes to release.sh
 git stash pop
 
+git checkout dev
+
+git push origin dev
+
 echo "Version $new_version has been released."
