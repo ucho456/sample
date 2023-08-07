@@ -69,8 +69,11 @@ git commit -m "Release version $new_version"
 git checkout dev
 git merge release-$new_version
 
-# Merge into the main branch
+# Pull remote changes for main branch
 git checkout main
+git pull origin main
+
+# Merge into the main branch
 git merge dev
 
 # Create and push the tag
