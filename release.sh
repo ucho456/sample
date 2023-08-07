@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Function: Get the version from package.json
 get_current_version() {
   current_version=$(cat package.json | grep -oP '"version": "\K[^"]+')
@@ -12,6 +14,9 @@ fi
 
 # Get version update type from arguments
 version_up_type=$1
+
+# Stash any changes to release.sh
+git stash push --keep-index
 
 # Switch to the dev branch and update it
 git checkout dev
@@ -77,5 +82,8 @@ git push origin main
 
 # Delete the release branch
 git branch -d release-$new_version
+
+# Restore the stashed changes to release.sh
+git stash pop
 
 echo "Version $new_version has been released."
